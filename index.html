@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FY Controller - Profesyonel Araç Asistanı</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;       /* Güven veren kurumsal mavi */
+            --primary-hover: #1d4ed8;
+            --bg-body: #f8fafc;       /* Temiz, açık gri/beyaz arka plan */
+            --bg-card: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Header / Hero Section --- */
+        header {
+            padding: 100px 20px 80px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 24px;
+            color: var(--text-main);
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin: 0 0 24px 0;
+            line-height: 1.15;
+            color: #0f172a;
+        }
+
+        p.subtitle {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto 40px auto;
+            font-weight: 400;
+        }
+
+        /* --- Buttons --- */
+        .btn-container {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+        }
+
+        .btn-secondary:hover {
+            background-color: #f8fafc;
+            border-color: #cbd5e1;
+        }
+
+        /* --- Geniş Konteyner --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 48px;
+            color: #0f172a;
+            font-weight: 700;
+        }
+
+        /* --- Grid & Cards --- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: left;
+            transition: box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+        }
+
+        .card-icon {
+            display: inline-block;
+            width: 48px;
+            height: 48px;
+            background-color: #eff6ff;
+            color: var(--primary);
+            border-radius: 12px;
+            text-align: center;
+            line-height: 48px;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            margin: 0 0 12px 0;
+            color: #0f172a;
+            font-weight: 600;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        /* --- Transparency Box --- */
+        .transparency-box {
+            background-color: white;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 40px;
+            margin-top: 60px;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .transparency-box h2 {
+            margin-top: 0;
+            color: #0f172a;
+            font-size: 1.75rem;
+        }
+
+        .transparency-box p {
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto 16px auto;
+        }
+
+        .alert-box {
+            background-color: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 40px;
+        }
+
+        .alert-box h4 {
+            margin: 0 0 8px 0;
+            color: #92400e;
+            font-size: 1.05rem;
+        }
+
+        .alert-box p {
+            margin: 0;
+            color: #b45309;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* --- Videos --- */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .video-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .video-card h3 {
+            margin: 0 0 16px 0;
+            color: #0f172a;
+            font-size: 1.25rem;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            background: #000;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: #f8fafc;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.25rem; }
+            .section-title { font-size: 1.75rem; }
+            header { padding: 60px 20px 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO SECTION -->
+    <header>
+        <div class="logo">FY <span>Controller</span></div>
+        <h1>Aracınızın Gelişmiş<br>Yönetim Paneli.</h1>
+        <p class="subtitle">
+            Multimedya sisteminize güvenle ve kablosuz olarak erişin. FY Controller, USB veya karmaşık kablolara ihtiyaç duymadan, akıllı uygulamaları aracınıza saniyeler içinde kurmanızı sağlayan profesyonel bir asistan yazılımıdır.
+        </p>
+        
+        <div class="btn-container">
+            <!-- Lütfen "fy_controller.apk" dosyanızı assets/app/ klasörüne yükleyin -->
+            <a href="assets/app/fy_controller.apk" download class="btn btn-primary">Uygulamayı İndir (v1.0.2)</a>
+            <a href="#how-to-install" class="btn btn-secondary">Nasıl Çalışır?</a>
+        </div>
+    </header>
+
+    <!-- ÖZELLİKLER -->
+    <div class="container">
+        <h2 class="section-title">Temel Özellikler</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <h3>Kablosuz Kurulum</h3>
+                <p>Uygulamaları kurmak için USB belleğe ihtiyacınız yok. FY Controller, aracnızla Wi-Fi üzerinden iletişim kurarak tüm kurulumları kablosuz gerçekleştirir.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">📺</div>
+                <h3>Youtube & Youtube Müzik Deneyimi</h3>
+                <p>Aracınızın ekranına özel optimize edilmiş, direksiyon tuşlarıyla uyumlu video ve müzik uygulamalarını sisteminize tek tıkla güvenle entegre edin.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🎙️</div>
+                <h3>Sesli Asistan Entegrasyonu</h3>
+                <p>Gelişmiş arayüz yönetimi sayesinde; uygulamalar arası geçiş ve genel sistem kontrolünü sesli komutlarla daha pratik hale getirin.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- VİDEOLAR -->
+    <div class="container" style="padding-top: 0;">
+        <h2 class="section-title">Rehber Videolar</h2>
+        <div class="video-grid">
+            <div class="video-card">
+                <h3>Sistem Tanıtımı</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/2McaxmBgi2A?modestbranding=1&rel=0&playsinline=1" title="Tanıtım Videosu" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="video-card">
+                <h3>Kurulum Rehberi</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/sMlJn9T8gys?modestbranding=1&rel=0&playsinline=1" title="Kurulum Videosu" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NASIL ÇALIŞIR -->
+    <div class="container" id="how-to-install" style="padding-top: 0;">
+        <h2 class="section-title">Tamamen Kablosuz, Sadece 3 Adım</h2>
+        
+        <div class="grid">
+            <div class="card" style="text-align: center; padding: 40px 20px;">
+                <div style="font-size: 2.5rem; color: var(--primary); font-weight: 700; margin-bottom: 16px;">1</div>
+                <h3>Uygulamayı Yükleyin</h3>
+                <p>FY Controller'ı telefonunuza veya tabletinize indirin ve açın.</p>
+            </div>
+            <div class="card" style="text-align: center; padding: 40px 20px;">
+                <div style="font-size: 2.5rem; color: var(--primary); font-weight: 700; margin-bottom: 16px;">2</div>
+                <h3>Araca Bağlanın</h3>
+                <p>Aracınızı telefonunuzun Wi-Fi ağına bağlayın. Wi-Fi bağlantısı gerçekleştikten sonra uygulama aracınızı tek tuş ile algılayacaktır.</p>
+            </div>
+            <div class="card" style="text-align: center; padding: 40px 20px;">
+                <div style="font-size: 2.5rem; color: var(--primary); font-weight: 700; margin-bottom: 16px;">3</div>
+                <h3>Kurulumu Başlatın</h3>
+                <p>Kur butonu ile kurulumunuzu gerçekleştirin. Diğer uygulamalara artık aracınızın mağazasından erişebilirsiniz.</p>
+            </div>
+        </div>
+
+        <div class="transparency-box">
+            <h2>Hakkımızda & Şeffaflık Politikası</h2>
+            <p>
+                <strong>FY Controller</strong>, gelişmiş bir sistem yönetim aracıdır. Aracın geliştirici altyapısına (Android Debug Bridge - ADB) kablosuz olarak erişerek standart arayüzün sunduğu kısıtlamaların ötesinde uygulamalar kurmanıza olanak tanır.
+            </p>
+            <p>
+                <strong>Neden Google Play Store'da Değiliz?</strong><br>
+                Google Play politikaları, kendi içinden başka çalıştırılabilir dosyalar indirebilen veya sistem ayarlarına (ADB üzerinden) profesyonel düzeyde köklü değişiklikler yapan uygulamalara standart dışı olduğu için izin vermez. FY Controller, işlevini yerine getirmek için doğrudan sistemle konuşmak zorundadır; bu nedenle kendi resmi kanalımızdan yayınlanmaktadır.
+            </p>
+            <p>
+                Sistemimiz, aracın orijinal donanımına kalıcı veya fiziksel bir müdahalede bulunmaz; yapılan tüm entegrasyonlar orijinal yazılım kuralları çerçevesinde gerçekleşir. Tüm verileriniz yerel olarak, çevrimdışı ve güvenli bir şekilde aktarılmaktadır.
+            </p>
+        </div>
+
+        <div class="transparency-box" style="margin-top: 40px; border-color: #2563eb;">
+            <h2 style="color: #2563eb;">Garanti ve Sistem Güvenliği</h2>
+            <p style="text-align: left; max-width: 800px; margin: 0 auto 16px auto;">
+                Sıfır bir araca yazılım kurarken gösterdiğiniz hassasiyeti anlıyoruz. FY Controller altyapısı, sistem güvenliği en üst seviyede tutularak tasarlanmıştır. Ancak 3. parti tüm yazılımlarda olduğu gibi <strong>nihai sorumluluk araç sahibine aittir.</strong> Güvenle kullanabilmeniz adına uyduğumuz prensipler şunlardır:
+            </p>
+            <ul style="text-align: left; max-width: 800px; margin: 0 auto 0 auto; color: var(--text-muted); line-height: 1.8;">
+                <li><strong>Sistem Dosyalarına Müdahale Yoktur:</strong> Cihazınızın kalıcı yazılımı "kırılmaz" (Root işlemi yapılmaz). Kurulumlar yalnızca standart Kullanıcı Alanı'na gerçekleştirilir.</li>
+                <li><strong>Geri Döndürülebilir Altyapı:</strong> Aracınızı servise götürmeden önce sistem üzerinden "Varsayılana Dön" işlemi yaparak cihazı orijinal haline kalıntısız çevirebilirsiniz. Ayrıca aracın kendi içerisinde sunmuş olduğu "FABRİKA AYARLARINA DÖN" seçeneği de değerlendirilebilir.</li>
+                <li><strong>Sürüş Dinamiklerine Etki Etmez:</strong> Multimedya ekranı ile aracınızın sürüş beyni (Fren, Motor vb.) donanımsal olarak tamamen izoledir. Asistan işlemleri aracın fiziksel güvenliğine müdahale edemez.</li>
+                <li><strong>Resmi Mimariler:</strong> FY Controller, zararlı yazılımlar kullanmaz. Sistem, donanım üreticilerine ve genel Android'e açık olan resmi komut sistemi üzerinden çalışır.</li>
+            </ul>
+        </div>
+
+        <div class="alert-box">
+            <h4>"Bilinmeyen Kaynaklar" Uyarısı Hk.</h4>
+            <p>
+                Android işletim sistemi, genel güvenlik prensipleri gereği uygulama mağazası dışından indirilen tüm araçlar için kurulum aşamasında standart bir izin ekranı gösterir. Sisteminizin aracı başarıyla kurabilmesi için "Bilinmeyen kaynaklardan yüklemelere izin ver" seçeneğini onaylamanız gerekmektedir. 
+            </p>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 FY UX Team. Tüm hakları saklıdır.</p>
+        <p style="font-size: 0.8rem; margin-top: 10px;">
+            Yazılımımız sadece kişisel kullanım amaçlıdır. Ticari amaçla kopyalanamaz veya dağıtılamaz.
+        </p>
+    </footer>
+
+</body>
+</html>
