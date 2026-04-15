@@ -6,14 +6,15 @@ set "REPO=fymcontroller-ux/fycontroller"
 set "JSON_FILE=fycontroller.json"
 set "TAG=v1.0"
 set "APK_FILENAME=fy_controller.apk"
-set "APK_LOCAL_PATH=assets\app\%APK_FILENAME%"
+:: APK artik doğrudan bu scriptin olduğu yerde (ana dizinde) bekleniyor
+set "APK_LOCAL_PATH=%APK_FILENAME%"
 
 echo ===========================================
-echo    FY CONTROLLER - RELEASE UPDATER (V5)
+echo    FY CONTROLLER - RELEASE UPDATER (V6)
 echo ===========================================
 
-set "SOURCE_DIR=D:\FY\Android Studio\Cherry\FY_Site"
-cd /d "%SOURCE_DIR%"
+:: Ana dizine git (Scriptin olduğu yer)
+cd /d "%~dp0"
 
 :: 1. GitHub API ile Mevcut Versiyonu Oku
 echo [1/4] GitHub verileri okunuyor...
@@ -35,11 +36,13 @@ if "%ver%"=="" (
     exit /b
 )
 
-:: 3. APK'yı GitHub Release'e Yükle (Release Taktiği)
+:: 3. APK'yı GitHub Release'e Yükle
 echo.
-echo [3/4] APK dosyasi GitHub Release (%TAG%) alanina yukleniyor...
+echo [3/4] %APK_FILENAME% GitHub Release (%TAG%) alanina yukleniyor...
 if not exist "%APK_LOCAL_PATH%" (
-    echo HATA: %APK_LOCAL_PATH% bulunamadi!
+    echo.
+    echo HATA: %APK_LOCAL_PATH% bulunamadi! 
+    echo Lutfen APK dosyasini bu script ile ayni klasore (Ana Dizin) koyun.
     pause
     exit /b
 )
@@ -48,7 +51,7 @@ gh release upload %TAG% "%APK_LOCAL_PATH%" --clobber --repo %REPO%
 
 if %errorlevel% neq 0 (
     echo.
-    echo HATA: Release yuklemesi basarisiz oldu. 
+    echo HATA: Release yuklemesi basarisiz oldu.
     pause
     exit /b
 )
@@ -69,7 +72,7 @@ powershell -NoProfile -Command ^
     "$newJson = $json | ConvertTo-Json -Depth 10;" ^
     "$newBytes = [System.Text.Encoding]::UTF8.GetBytes($newJson);" ^
     "$base64 = [System.Convert]::ToBase64String($newBytes);" ^
-    "$payload = @{ message='Update version to %ver% and downloadUrl to Release'; content=$base64; sha=$sha } | ConvertTo-Json -Depth 10;" ^
+    "$payload = @{ message='Update version to %ver% and downloadUrl (Release V6)'; content=$base64; sha=$sha } | ConvertTo-Json -Depth 10;" ^
     "$payload | gh api --method PUT repos/%REPO%/contents/%JSON_FILE% --input -"
 
 if %errorlevel% equ 0 (
